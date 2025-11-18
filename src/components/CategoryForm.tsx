@@ -15,8 +15,11 @@ export const CategoryForm  = () => {
       <h1>React-Hook-Form</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>
-          <input {...register('firstName')}/>
+          <input {...register('firstName', {required: 'Field have to filled'})}/>
         </label>
+        <div>{
+          errors?.firstName && <p>{errors?.firstName?.message || "Error!"}</p>}
+        </div>
         <input type={'submit'}/>
       </form>
     </div>
