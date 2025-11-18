@@ -7,23 +7,40 @@ interface Props {
 
 export const CategoryForm  = () => {
 
-  const {register, formState: {errors}, handleSubmit} = useForm()
-  const onSubmit = (data) => alert(JSON.stringify(data))
+  const {register, formState: {errors, isValid}, handleSubmit, reset} = useForm({mode: 'onBlur'})
+  const onSubmit = (data) => {
+    alert(JSON.stringify(data))
+    reset()
+  }
+  console.log('render')
 
   return (
     <div>
       <h1>React-Hook-Form</h1>
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>
+          First Name
           <input {...register('firstName',
             {required: 'Field have to filled',
-            minLength: {value: 5, message: 'at least 5 characters'}
+            minLength: {value: 4, message: 'at least 4 characters'}
             })}/>
         </label>
+
+        <label>
+          Last Name
+          <input {...register('lastName',
+            {required: 'Field have to filled',
+              minLength: {value: 5, message: 'at least 5 characters'}
+            })}/>
+        </label>
+
         <div>{
           errors?.firstName && <p>{errors?.firstName?.message || "Error!"}</p>}
         </div>
-        <input type={'submit'}/>
+
+        <input type={'submit'} disabled={!isValid}/>
+
       </form>
     </div>
   )
