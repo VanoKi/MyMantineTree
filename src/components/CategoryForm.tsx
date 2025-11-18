@@ -1,28 +1,24 @@
 import type { Category } from "./CategoryTree.tsx";
+import {useForm} from 'react-hook-form'
 
 interface Props {
   selected: Category | null;
 }
 
-export const CategoryForm  = ({ selected }) => {
-  if (!selected) return <div>Выберите категорию</div>;
+export const CategoryForm  = () => {
+
+  const {register, formState: {errors}, handleSubmit} = useForm()
+  const onSubmit = (data) => alert(JSON.stringify(data))
 
   return (
-    <div style={{ padding: 16, border: "1px solid #ccc", borderRadius: 8 }}>
-      <h2>Редактирование категории</h2>
-
-      <label>
-        Название:
-        <input
-          type="text"
-          defaultValue={selected.name}
-          style={{ marginLeft: 8 }}
-        />
-      </label>
-
-      <div style={{ marginTop: 16 }}>
-        <button>Сохранить</button>
-      </div>
+    <div>
+      <h1>React-Hook-Form</h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label>
+          <input {...register('firstName')}/>
+        </label>
+        <input type={'submit'}/>
+      </form>
     </div>
-  );
+  )
 };

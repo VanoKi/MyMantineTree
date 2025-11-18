@@ -8,14 +8,16 @@ export default function App() {
 
   return (
     <div style={{ display: "flex", gap: 32, padding: 32 }}>
+
+      <div style={{ flexGrow: 1 }}>
+        <CategoryForm selected={selected} />
+      </div>
+
       <div>
         <h2>Дерево категорий</h2>
         <CategoryTree data={categories} onSelect={setSelected} />
       </div>
 
-      <div style={{ flexGrow: 1 }}>
-        <CategoryForm selected={selected} />
-      </div>
     </div>
   );
 }

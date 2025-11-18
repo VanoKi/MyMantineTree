@@ -11,7 +11,7 @@ interface Props {
   onSelect: (category: Category) => void;
 }
 
-export const CategoryTree = ({ data, onSelect }) => {
+export const CategoryTree = ({ data, onSelect }: Props) => {
   return (
     <div>
       {data.map((cat) => (
