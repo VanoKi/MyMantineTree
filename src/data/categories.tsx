@@ -1,30 +1,71 @@
-export const categories = [
+import type {TreeNodeData} from '@mantine/core';
+
+export const data: TreeNodeData[] = [
   {
-    id: 1,
-    name: "Electronics",
+    label: 'src',
+    value: 'src',
     children: [
       {
-        id: 2,
-        name: "Phones",
+        label: 'components',
+        value: 'src/components',
         children: [
-          { id: 3, name: "Android", children: [] },
-          { id: 4, name: "iPhone", children: [] },
+          { label: 'Accordion.tsx', value: 'src/components/Accordion.tsx' },
+          { label: 'Tree.tsx', value: 'src/components/Tree.tsx' },
+          { label: 'Button.tsx', value: 'src/components/Button.tsx' },
         ],
-      },
-      {
-        id: 5,
-        name: "Laptops",
-        children: [],
       },
     ],
   },
-
   {
-    id: 6,
-    name: "Furniture",
+    label: 'node_modules',
+    value: 'node_modules',
     children: [
-      { id: 7, name: "Chairs", children: [] },
-      { id: 8, name: "Tables", children: [] },
+      {
+        label: 'react',
+        value: 'node_modules/react',
+        children: [
+          { label: 'index.d.ts', value: 'node_modules/react/index.d.ts' },
+          { label: 'package.json', value: 'node_modules/react/package.json' },
+        ],
+      },
+      {
+        label: '@mantine',
+        value: 'node_modules/@mantine',
+        children: [
+          {
+            label: 'core',
+            value: 'node_modules/@mantine/core',
+            children: [
+              { label: 'index.d.ts', value: 'node_modules/@mantine/core/index.d.ts' },
+              { label: 'package.json', value: 'node_modules/@mantine/core/package.json' },
+            ],
+          },
+          {
+            label: 'hooks',
+            value: 'node_modules/@mantine/hooks',
+            children: [
+              { label: 'index.d.ts', value: 'node_modules/@mantine/hooks/index.d.ts' },
+              { label: 'package.json', value: 'node_modules/@mantine/hooks/package.json' },
+            ],
+          },
+          {
+            label: 'form',
+            value: 'node_modules/@mantine/form',
+            children: [
+              { label: 'index.d.ts', value: 'node_modules/@mantine/form/index.d.ts' },
+              { label: 'package.json', value: 'node_modules/@mantine/form/package.json' },
+            ],
+          },
+        ],
+      },
     ],
+  },
+  {
+    label: 'package.json',
+    value: 'package.json',
+  },
+  {
+    label: 'tsconfig.json',
+    value: 'tsconfig.json',
   },
 ];

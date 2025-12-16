@@ -1,52 +1,25 @@
-import { useState } from "react";
+import {Group, Tree} from '@mantine/core';
+import { data } from '../data/categories.tsx';
+import { IconChevronDown } from '@tabler/icons-react';
 
-export type Category = {
-  id: number;
-  name: string;
-  children: Category[];
-}
-
-interface Props {
-  data: Category[];
-  onSelect: (category: Category) => void;
-}
-
-export const CategoryTree = ({ data, onSelect }: Props) => {
+export function Demo() {
   return (
-    <div>
-      {data.map((cat) => (
-        <TreeNode key={cat.id} node={cat} onSelect={onSelect} />
-      ))}
-    </div>
-  );
-};
+    <Tree
+      data={data}
+      style={{ width: 400, height: 500 }}
+      levelOffset={23}
+      renderNode={({ node, expanded, hasChildren, elementProps }) => (
+        <Group gap={5} {...elementProps}>
+          {hasChildren && (
+            <IconChevronDown
+              size={18}
+              style={{ transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)' }}
+            />
+          )}
 
-const TreeNode: FC<{ node: Category; onSelect: (c: Category) => void }> = ({
-                                                                             node,
-                                                                             onSelect,
-                                                                           }) => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <div style={{ marginLeft: 16 }}>
-      <div
-        style={{ cursor: "pointer", fontWeight: 600 }}
-        onClick={() => {
-          onSelect(node);
-          setOpen(!open);
-        }}
-      >
-        {node.children.length > 0 ? (open ? "▼ " : "▶ ") : "• "}
-        {node.name}
-      </div>
-
-      {open && node.children.length > 0 && (
-        <div style={{ marginLeft: 16 }}>
-          {node.children.map((child) => (
-            <TreeNode key={child.id} node={child} onSelect={onSelect} />
-          ))}
-        </div>
+          <span>{node.label}</span>
+        </Group>
       )}
-    </div>
+    />
   );
-};
+}
